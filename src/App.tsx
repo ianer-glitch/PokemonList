@@ -48,6 +48,13 @@ function App() {
     
   }
 
+  const handleKeyDown = (event : React.KeyboardEvent) => {
+    if(event.key === 'Enter'){
+      handleSearch()
+    }
+
+  }
+
   return (
     <>
       <div>
@@ -58,6 +65,7 @@ function App() {
             type='text'
             onChange={handleInputChange}
             name="pokemonSearch"
+            onKeyDown={handleKeyDown}
             >
             </input>
         </fieldset>

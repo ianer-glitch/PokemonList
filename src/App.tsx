@@ -4,7 +4,7 @@ import PokemonItem from './components/PokemonItem/PokemonItem'
 import IPokemonItem from './components/PokemonItem/PokemonItemProps'
 
 function App() {
-  const [pokemonSearch,setPokemonSearh] = useState('ditto')
+  const [pokemonSearch,setPokemonSearh] = useState('')
   const [shouldSearch,setShouldSearch] = useState(0)
   const [pokemonArray,setPokemonArray] = useState([] as Array<IPokemonItem>)
 
@@ -72,9 +72,11 @@ function App() {
         </fieldset>
         <button type="button" onClick={handleSearch}>Go!</button>
         
-        <ul className="pokemon-list">
+        {pokemons.length > 0 && 
+          <ul className="pokemon-list">
           {pokemons}
-        </ul>
+        </ul>}
+        
       </section>
     </div>
   )

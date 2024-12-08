@@ -1,33 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import PokemonItem from './components/PokemonItem/PokemonItem'
+import IPokemonItem from './components/PokemonItem/PokemonItemProps'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemonSearch,setPokemonSearh] = useState('')
+  const [shouldSearch,setShouldSearch] = useState(0)
+  const [pokemonArray,setPokemonArray] = useState([] as Array<IPokemonItem>)
+
+  const getPokemon = async (poke : string ) =>{
+    if(poke){
+      const url = `https://pokeapi.co/api/v2/pokemon/${poke}`
+      const r = await fetch(url)  
+      const rJson = await r.json() 
+      const name = rJson.name
+      const img = rJson.sprites.front_default
+      
+      setPokemonArray(oldVal => [
+        ...oldVal,
+        {
+          name: name,
+          img:img
+        } as IPokemonItem
+      ])
+    }
+  }
+
+  const pokemons = pokemonArray.map((m,index)=>
+    <PokemonItem 
+      img={m.img} 
+      name={m.name}
+      key={index}
+      />
+  )
+
+
+  useEffect(()=>{
+      getPokemon(pokemonSearch)
+  },[shouldSearch])
+
+  const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
+    setPokemonSearh(event.target.value)
+  }
+
+  const handleSearch = () =>{
+    setShouldSearch(old => old + 1)
+    
+  }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <fieldset>
+          <label>Search for a Pokemon!</label>
+          <input 
+            value={pokemonSearch} 
+            type='text'
+            onChange={handleInputChange}
+            name="pokemonSearch"
+            >
+            </input>
+        </fieldset>
+        <button type="button" onClick={handleSearch}>Go!</button>
       </div>
-      <h1>Vite + React aaaaaaa</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ul>
+      {pokemons}
+      </ul>
     </>
   )
 }

@@ -4,7 +4,7 @@ import PokemonItem from './components/PokemonItem/PokemonItem'
 import IPokemonItem from './components/PokemonItem/PokemonItemProps'
 
 function App() {
-  const [pokemonSearch,setPokemonSearh] = useState('')
+  const [pokemonSearch,setPokemonSearh] = useState('ditto')
   const [shouldSearch,setShouldSearch] = useState(0)
   const [pokemonArray,setPokemonArray] = useState([] as Array<IPokemonItem>)
 
@@ -31,6 +31,7 @@ function App() {
       img={m.img} 
       name={m.name}
       key={index}
+      className="pokemon-list--item"
       />
   )
 
@@ -56,10 +57,10 @@ function App() {
   }
 
   return (
-    <>
-      <div>
+    <div className="pokemon-container">
+      <section className="pokemon-form">
+        <h1>Search for a Pokemon!</h1>
         <fieldset>
-          <label>Search for a Pokemon!</label>
           <input 
             value={pokemonSearch} 
             type='text'
@@ -70,11 +71,12 @@ function App() {
             </input>
         </fieldset>
         <button type="button" onClick={handleSearch}>Go!</button>
-      </div>
-      <ul>
-      {pokemons}
-      </ul>
-    </>
+        
+        <ul className="pokemon-list">
+          {pokemons}
+        </ul>
+      </section>
+    </div>
   )
 }
 

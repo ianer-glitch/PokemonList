@@ -1,5 +1,6 @@
 export default interface IPokemonItem{
     name:string,
-    img:string
+    img:string,
+    className?:string
     
 }

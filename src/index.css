@@ -6,24 +6,7 @@
   background-repeat: no-repeat;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-}
 
-html,body{
-  height: 100%;
-    
-}
 
-fieldset{
-  border: none;
-}
 
-input{
-  padding: .8rem;
-  border-radius: 8px;
-  border: none;
-  width: 100%;
-  font-size: medium;
-}
+

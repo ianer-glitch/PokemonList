@@ -4,6 +4,11 @@
     box-sizing: border-box;
   }
 
+  html,body{
+    height: 100%;
+      
+  }
+
   :root {
     --h1-font-size: clamp(2rem, 3vh, 2.4rem);
     --h2-font-size: clamp(1.4rem, 2.4vh, 1.8rem);
@@ -31,4 +36,16 @@
   
   label {
     font-size: var(--label-font-size);
+  }
+
+  fieldset{
+    border: none;
+  }
+  
+  input{
+    padding: .8rem;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    font-size: medium;
   }

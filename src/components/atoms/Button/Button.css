@@ -8,4 +8,12 @@
     color: white;
     font-weight: bold;
     font-size: large;
+    transition: all .2s ease-in-out;
+  }
+
+  .button-default:is(:hover,:active){
+    scale: 1.1;
+    box-shadow: 1px 1px 8px 1px white;
+    background-color: #6bb4b9;
+    cursor: pointer;
   }

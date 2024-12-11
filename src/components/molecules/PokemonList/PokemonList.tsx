@@ -39,9 +39,12 @@ export default function PokemonList(props : IPokemonList){
           getPokemon(props.pokemonSearch)
       },[props.shouldSearch])
 
+      const showPokemonList = pokemons.length > 0
     return(
-        <ul className="pokemon-list">
+        ( showPokemonList && 
+          <ul className="pokemon-list">
              {pokemons}
         </ul>
+        )
     )
 }

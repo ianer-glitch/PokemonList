@@ -1,10 +1,10 @@
 import IPokemonItem from "./PokemonItemProps";
-
+import './PokemonItem.css'
 
 
 export default function PokemonItem(props : IPokemonItem) {
     return (
-    <li className={props.className}>
+    <li className="pokemon-list--item">
         <p>{props.name}</p>
         <img src={props.img} alt={props.name}></img>
     </li>)

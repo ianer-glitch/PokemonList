@@ -52,26 +52,8 @@
 
 
 
-.pokemon-list{
-  display: flex;
-  flex-wrap:  wrap;
-  align-items: center;
-  justify-content: center;
-  background-color: hsla(46, 100%, 88%, 0.8);
-  padding: 1rem;
-  border-radius:16px ;
-  gap: 1rem;
-}
 
 
 
-.pokemon-list--item:is(:hover,:active){
-  scale: 2;
-  box-shadow: 1px 1px 8px 1px rgb(64, 64, 64);
-  
-  
-  
 
-
-}
 

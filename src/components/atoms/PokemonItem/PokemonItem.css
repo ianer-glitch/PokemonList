@@ -11,3 +11,9 @@
     font-weight: bold;
     transition: all .4s ease-in-out;
   }
+
+  .pokemon-list--item:is(:hover,:active){
+    scale: 2;
+    box-shadow: 1px 1px 8px 1px rgb(64, 64, 64);
+  }
+  

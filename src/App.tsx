@@ -1,44 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
-import PokemonItem from './components/PokemonItem/PokemonItem'
-import IPokemonItem from './components/PokemonItem/PokemonItemProps'
+import PokemonList from './components/molecules/PokemonList/PokemonList'
+import Button from './components/atoms/Button/Button'
 
 function App() {
   const [pokemonSearch,setPokemonSearh] = useState('')
   const [shouldSearch,setShouldSearch] = useState(0)
-  const [pokemonArray,setPokemonArray] = useState([] as Array<IPokemonItem>)
+ 
 
-  const getPokemon = async (poke : string ) =>{
-    if(poke){
-      const url = `https://pokeapi.co/api/v2/pokemon/${poke}`
-      const r = await fetch(url)  
-      const rJson = await r.json() 
-      const name = rJson.name
-      const img = rJson.sprites.front_default
-      
-      setPokemonArray(oldVal => [
-        ...oldVal,
-        {
-          name: name,
-          img:img
-        } as IPokemonItem
-      ])
-    }
-  }
-
-  const pokemons = pokemonArray.map((m,index)=>
-    <PokemonItem 
-      img={m.img} 
-      name={m.name}
-      key={index}
-      className="pokemon-list--item"
-      />
-  )
-
-
-  useEffect(()=>{
-      getPokemon(pokemonSearch)
-  },[shouldSearch])
+  
 
   const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
     setPokemonSearh(event.target.value)
@@ -70,12 +40,12 @@ function App() {
             >
             </input>
         </fieldset>
-        <button type="button" onClick={handleSearch}>Go!</button>
+        <Button onClick={handleSearch} text='Go!' />
         
-        {pokemons.length > 0 && 
-          <ul className="pokemon-list">
-          {pokemons}
-        </ul>}
+        <PokemonList 
+          shouldSearch={shouldSearch} 
+          pokemonSearch={pokemonSearch}
+        />
         
       </section>
     </div>

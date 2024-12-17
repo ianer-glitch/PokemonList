@@ -5,11 +5,17 @@ import "./Home.css"
 import InputText from "../../components/atoms/InputText/InputText"
 
 export default function Home(){
-    const [pokemonSearch,setPokemonSearh] = useState('')
+    const [pokemonSearchForm,setPokemonSearhForm] = useState({searchText:''})
     const [shouldSearch,setShouldSearch] = useState(0)
   
     const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
-      setPokemonSearh(event.target.value)
+      
+      setPokemonSearhForm(oldVal => {
+        return {
+          ...oldVal,
+          searchText:event.target.value
+        }
+      })
     }
   
     const handleSearch = () =>{
@@ -29,9 +35,9 @@ export default function Home(){
         <h1>Search for a Pokemon!</h1>
         <fieldset>
           <InputText
-            value={pokemonSearch} 
+            value={pokemonSearchForm.searchText} 
             onChange={handleInputChange}
-            name="pokemonSearch"
+            name="pokemonSearch.searchTex"
             onKeyDown={handleKeyDown}
           />
           </fieldset>
@@ -39,7 +45,7 @@ export default function Home(){
         
         <PokemonList 
           shouldSearch={shouldSearch} 
-          pokemonSearch={pokemonSearch}
+          pokemonSearch={pokemonSearchForm.searchText}
         />
         
       </section>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import Button from "../../components/atoms/Button/Button"
 import PokemonList from "../../components/molecules/PokemonList/PokemonList"
 import "./Home.css"
+import InputText from "../../components/atoms/InputText/InputText"
 
 export default function Home(){
     const [pokemonSearch,setPokemonSearh] = useState('')
@@ -27,15 +28,13 @@ export default function Home(){
       <section className="pokemon-form">
         <h1>Search for a Pokemon!</h1>
         <fieldset>
-          <input 
+          <InputText
             value={pokemonSearch} 
-            type='text'
             onChange={handleInputChange}
             name="pokemonSearch"
             onKeyDown={handleKeyDown}
-            >
-            </input>
-        </fieldset>
+          />
+          </fieldset>
         <Button onClick={handleSearch} text='Go!' />
         
         <PokemonList 

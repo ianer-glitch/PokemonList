@@ -7,13 +7,17 @@ import InputText from "../../components/atoms/InputText/InputText"
 export default function Home(){
     const [pokemonSearchForm,setPokemonSearhForm] = useState({searchText:''})
     const [shouldSearch,setShouldSearch] = useState(0)
-  
-    const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) =>{
-      
-      setPokemonSearhForm(oldVal => {
-        return {
-          ...oldVal,
-          searchText:event.target.value
+
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const {name,value} = event.target
+      Object.keys(pokemonSearchForm).forEach((key) => {
+        if (name === key) {
+          setPokemonSearhForm((old) => {
+            return {
+              ...old,
+              [key]: value,
+            }
+          })
         }
       })
     }
@@ -36,8 +40,8 @@ export default function Home(){
         <fieldset>
           <InputText
             value={pokemonSearchForm.searchText} 
-            onChange={handleInputChange}
-            name="pokemonSearch.searchTex"
+            onChange={handleFormChange}
+            name="searchText"
             onKeyDown={handleKeyDown}
           />
           </fieldset>
